@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clients and agents page</title>
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <nav class="navigatio">
+        <div id="topnav" >
+            <div>
+                <div class="homepage"><a href="/" ><img src="{% static 'images/LOGO.png' %}" height="80px" width="80px"></a></div>
+                
+            </div>
+       
+        </div> 
+        <div id="smallnav">
+            <a id="adds" href="/account">Advertise</a><br>
+            <h3>Set your details on this page</h3>
+        </div>    
+        <div id="nav1">
+            
+                
+                    <a href="/">Home</a>&nbsp;
+              
+                
+                    <a href="/#services">Services</a>&nbsp;
+                
+                
+                    <a href="/#about">About</a>&nbsp;
+                
+                
+                    <a href="terms.html">Terms</a>&nbsp;
+               
+                    <a href="/#houses">Houses</a>
+                
+                    
+                    <a id="adds" href="/account">Advertise</a><br>
+                    <h3>Set your details on this page</h3>
+
+                                 
+        </div> 
+        <div class="logout"><a href="logout"><button>logout</button></a></div>
+        <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fa fa-bars" id="btn"></i>
+            <i class="fa fa-times" id="cancel"></i>
+        </label>
+
+    <div class="sidebar">
+        
+
+        <header>Quickyhomes</header>
+
+        <ul>
+            <li><a href="/" ><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/#services" ><i class="fa fa-link"></i> Services</a></li>
+            <li><a href="/#houses" ><i class="fa fa-link"></i> Houses</a></li>
+            <li><a href="/#about" ><i class="fa fa-link"></i> About</a></li>
+            <li><a href="terms.html" ><i class="fa fa-link"></i> Terms</a></li>
+            <li><a href="/account" ><i class="fa fa-link"></i> Advertise</a></li>
+        </ul>
+    </div> 
+
+</nav>
+
+<body>
+    <style>
+    body{
+        margin-top: 150px;
+    
+    }
+    h6{
+        color: black;
+        display: inline-block;
+    }
+    .accountform a{
+        color: red;
+    }
+    .accountform a:hover{
+        color: rgb(250, 247, 247);
+    }
+    .logout{
+        margin-top: 40px;
+        margin-right: 10px;
+    }
+    </style>
+    
+    <a href="/">QuickyHomes</a>/account for <b>{{user.username}}</b>
+    <div class="accountform">
+        <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div id="agentdata">
+            <label><h4>Name OF Your Agency</h4></label><br>
+            <input type="text" name="agencyname" value="{{user_profile.agentname}}" id="contacts" required><br>
+            <label><h4>UPLOAD Agency logo.</h4><h6>optional</h6></label><br>
+            <div class="wallpaper">
+            <img src="{{user_profile.profileimg.url}}" height="150px" width="300px"/>
+            </div>
+            </div>
+            <input type="file" id="file_input" name="image" accept="image/jpg">
+            <div id="agentdetails">
+            <label><h4>Details About Agency</h4></label><br>
+            <textarea type="textarea" name="agentdetails" height="200px" width="400px" placeholder="eg, contacts, other " required>{{user_profile.bio}}</textarea><br>
+            <br>
+            <button type="submit">save</button>&nbsp; &nbsp;
+            <a href="/Houseupload">Upload houses here</a>
+            </div>
+        </form>
+   </div>
+    
+
+
+
+
+   {% for post in houses %}
+    <div>Housenames{{post.house_name}}</div>
+    
+   {% endfor %}
+</div>
+    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'nav.js' %}"></script>
+</body>
+</html>

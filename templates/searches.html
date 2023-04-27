@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>house search</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<nav class="navigation">
+    <div id="topnav" >
+        <div>
+            <div class="homepage"><a href="/" ><img src="{% static 'images/LOGO.png' %}" height="80px" width="100px"></a></div>
+            
+        </div>
+   
+       </div>     
+    <div id="nav1">
+        
+            
+                <a href="/">Home</a>&nbsp;
+          
+            
+                <a href="/#services">Services</a>&nbsp;
+            
+            
+                <a href="/#about">About</a>&nbsp;
+            
+            
+                <a href="terms.html">Terms</a>&nbsp;
+           
+                <a href="/#houses">Houses</a>
+            
+                
+                <a id="adds" href="/account">Advertise</a><br>
+                <h3>Find your Desired comfortable rental home</h3>                    
+    </div>
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" id="btn"></i>
+        <i class="fa fa-times" id="cancel"></i>
+    </label>
+
+<div class="sidebar">
+    
+
+    <header>Quickyhomes</header>
+
+    <ul>
+        <li><a href="/" ><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/#services" ><i class="fa fa-link"></i> Services</a></li>
+        <li><a href="/#houses" ><i class="fa fa-link"></i> Houses</a></li>
+        <li><a href="/#about" ><i class="fa fa-link"></i> About</a></li>
+        <li><a href="terms.html" ><i class="fa fa-link"></i> Terms</a></li>
+        <li><a href="/account" ><i class="fa fa-link"></i> Advertise</a></li>
+    </ul>
+</div>  
+
+</nav>
+<div class="search">
+    <form method ="get" action="/search" class="location">
+        <div class="location">
+         {{ listing_filter.form}} 
+        
+        </div>
+        <button type="submit">Search</button>
+    </form>        
+</div>
+<body>
+
+<div class="main-section" id="houses">   
+{% for listings in listing_filter.qs %}
+
+    <div class="product-box">
+                
+        <div class="description">{{ listings.house_name }}</div>
+
+        <img src="{{listings.main_img.url}}" class="slider-img" height="250px" width="100%" alt="product-img" class="product-img"><br>
+        
+        <a class="link" href="{% url 'houses' listings.id %}">
+            <button id="more" onclick="moredetails()"> More Details</button>
+            </a>
+        <div id="moredetails">
+        <p class="housetype"><h4>HOUSETYPE: </h4>{{ listings.housetype }}</p>
+        <span class="price"><h4>LOCATION: </h4>{{listings.location}}</span>
+        <p><h4>DETAILS: </h4>{{listings.details}}</p>
+        <p class="rent"><h4>RENT/MONTH: </h4>{{listings.rentmonth}}</p>
+        <p><h4>CALL: 0702361570</h4></p>
+        <P>Check location on google maps</P>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+
+</div>
+<div id="message">
+    <style>
+        #message,
+        h5{
+           color:red;
+           text-align: center;
+           margin: 0 auto;
+           padding-top: 30px;
+       }
+
+   </style>
+   {% for message in messages %}
+       <h4>!!! IF:{{message}}</h4>
+   {% endfor %}
+   
+</div>
+<script src="nav.js"></script> 
+<script src="main.js"></script> 
+</body>
+</html>

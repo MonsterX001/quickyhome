@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quickyhomes login</title>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navigatio">
+    <div id="topnav" >
+        <div>
+            <div class="homepage"><a href="/" ><img src="{% static 'images/LOGO.png' %}" height="80px" width="80px"></a></div>
+    
+        </div>
+   
+    </div>
+    <div id="smallnav">
+        <a id="adds" href="/account">Advertise</a><br>
+        <h3>Log in to your account to advertise houses</h3>
+    </div>    
+    <div id="nav1">
+        
+            
+                <a href="/">Home</a>&nbsp;
+          
+            
+                <a href="/#services">Services</a>&nbsp;
+            
+            
+                <a href="/#about">About</a>&nbsp;
+            
+            
+                <a href="terms.html">Terms</a>&nbsp;
+           
+                <a href="/#houses">Houses</a>
+            
+                
+                <a id="adds" href="/account">Advertise</a><br>
+                <h3>Log in to your account to advertise houses</h3>                    
+    </div> 
+
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fa fa-bars" id="btn"></i>
+    <i class="fa fa-times" id="cancel"></i>
+</label>
+
+<div class="sidebar">
+
+
+<header>Quickyhomes</header>
+
+<ul>
+    <li><a href="/" ><i class="fa fa-home"></i> Home</a></li>
+    <li><a href="/#services" ><i class="fa fa-link"></i> Services</a></li>
+    <li><a href="/#houses" ><i class="fa fa-link"></i> Houses</a></li>
+    <li><a href="/#about" ><i class="fa fa-link"></i> About</a></li>
+    <li><a href="terms.html" ><i class="fa fa-link"></i> Terms</a></li>
+    <li><a href="/account" ><i class="fa fa-link"></i> Advertise</a></li>
+</ul>
+</div> 
+
+</nav>
+<body>
+    <div id="loginform">
+        <h4>Login Here<h4>
+    </div>
+    <div>
+        <style>
+            h5{
+                color:red;
+                text-align: center;
+            }
+            h4{
+                text-align: center;
+            }
+            body{
+                margin-top: 150px;
+            }
+            .login a{
+                color:red;
+                margin-bottom: 20px;
+            }
+            .login a:hover{
+                color:rgb(247, 244, 244);
+            }
+        </style>
+        {% for message in messages %}
+        <h5>{{message}}</h5>
+        {% endfor %}
+    </div>
+    <div id="loginform">
+    <form class="login" action="" method="POST">
+        {% csrf_token %}
+        <label><h4> Enter Username</h4></label><br>
+        <input type="text" id="uasername" name="username"><br>
+        <label><h4> Enter Password</h4></label><br>
+        <input type="password" id="psw" name="password"><br>
+        <button type="submit" href="/account">Login</button><br>
+        <p>Don't have account</p><br><a href="/register">sign up</a>
+    </form>
+    </div>
+<script src="{% static 'main.js' %}"></script>
+<script src="{% static 'nav.js' %}">
+
+</script>
+</body>
+</html>

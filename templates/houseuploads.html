@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload houses</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'account.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<nav class="navigatio">
+    <div id="topnav" >
+        <div>
+            <div class="homepage"> <a href="/" ><img src="{% static 'images/LOGO.png' %}" height="80px" width="100px"></a></div>
+            
+        </div>
+   
+    </div> 
+    <div id="smallnav">
+        <a id="adds" href="/account">Advertise</a><br>
+        <h3>Upload Your houses on this page</h3>
+    </div> 
+    
+    </div>
+
+    <div id="nav1">
+        
+            
+                <a href="/">Home</a>&nbsp;
+          
+            
+                <a href="/#services">Services</a>&nbsp;
+            
+            
+                <a href="/#about">About</a>&nbsp;
+            
+            
+                <a href="terms.html">Terms</a>&nbsp;
+           
+                <a href="/#houses">Houses</a>
+            
+                
+                <a id="adds" href="/account">Advertise</a><br>
+                <h3>Upload Your houses on this page</h3>                   
+    </div> 
+    <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fa fa-bars" id="btn"></i>
+            <i class="fa fa-times" id="cancel"></i>
+        </label>
+
+    <div class="sidebar">
+        
+
+        <header>Quickyhomes</header>
+
+        <ul>
+            <li><a href="/" ><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/#services" ><i class="fa fa-link"></i> Services</a></li>
+            <li><a href="/#houses" ><i class="fa fa-link"></i> Houses</a></li>
+            <li><a href="/#about" ><i class="fa fa-link"></i> About</a></li>
+            <li><a href="terms.html" ><i class="fa fa-link"></i> Terms</a></li>
+            <li><a href="/account" ><i class="fa fa-link"></i> Advertise</a></li>
+        </ul>
+    </div> 
+
+</nav>
+<body>
+    <style>
+        .logout{
+        margin-top: 40px;
+        margin-right: 10px;
+    }
+    </style>
+    {% for message in messages %}
+    <h5>message{{ message }}</h5>
+    {% endfor %}
+    <div class="houses">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <label><h4>House/Appartment Name</h4></label><br>
+            
+            <input type="text" id="housename" name="housename" required><br>
+    
+            <label><h4>UPLOAD House Pictures</h4></label><br><br/>
+            <input type="file" id="file_input" name="mainimg" accept="image/jpg" required><br>
+    
+            <input type="file" id="file_input" name="houseimg1" accept="image/jpg" required><br>
+            
+            <input type="file" id="file_input" name="houseimg2" accept="image/jpg" required><br>
+            
+            <input type="file" id="file_input" name="houseimg3" accept="image/jpg" required><br>
+            
+            <input type="file" id="file_input" name="houseimg4" accept="image/jpg" required><br>
+            
+            <input type="file" id="file_input" name="houseimg5" accept="image/jpg" required><br>
+            <label><h4>HouseType</h4></label><br>
+            <input type="text" id="housetype" name="housetype" placeholder="eg, airbnb, bedsitter, own compound, one-two-twobedroom" required><br>
+            <label><h4>Location</h4></label><br>
+            <input type="text" id="location" name="location" placeholder="eg, town, location, sublocation " required><br>
+            <label><h4>RENT per month</h4></label><br>
+            <input type="text" name="rentmonth" id="contacts" required><br>
+            <label><h4>Other details</h4></label><br>
+            <div id = "textarea">
+            <textarea type="textarea" name="details" id="contacts" placeholder="eg, direction, and any other important info" required></textarea><br>
+            </div><br>
+            <label><h4>Phone Number</h4></label><br>
+            <input type="text" name="phoneno" id="contacts" required><br>
+            <button type="submit">POST</button>
+        </form>
+    </div>
+    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'nav.js' %}"></script>
+</body>
+</html>
